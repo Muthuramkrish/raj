@@ -33,7 +33,7 @@ function Footer() {
             </div>
             <div className="flex items-center gap-2 hover:text-green-300 transition-colors">
               <FaPhoneAlt className="text-green-400 text-base md:text-lg flex-shrink-0" />
-              <a href="tel:+917598895773" className="text-xs md:text-sm font-medium">+91 75988 95773</a>
+              <a href="tel:+917598895773" className="text-xs md:text-sm font-medium">+91 75988 95773 | +91 75988 65773</a>
             </div>
             <div className="flex items-start gap-2 hover:text-red-300 transition-colors">
               <FaEnvelope className="text-red-400 text-base md:text-lg flex-shrink-0 mt-0.5" />

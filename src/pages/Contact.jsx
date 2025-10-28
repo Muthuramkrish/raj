@@ -8,12 +8,14 @@ function Contact() {
       label: "Call Now",
       content: (
         <a
-          href="tel:+917598895773"
+          href="tel:+917598895773|tel:+917598865773"
           className="text-blue-600 hover:text-blue-700 font-medium text-sm sm:text-base"
         >
-          +91 7598895773
+
+          +91 7598895773 | +91 7598865773
         </a>
       ),
+      
     },
     {
       icon: <FaEnvelope className="text-sm" />,
