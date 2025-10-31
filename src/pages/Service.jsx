@@ -48,10 +48,10 @@ const servicesSummary = [
   {
       number: "04",
       title: "Advanced Glaucoma Testing",
-      desc: "Comprehensive glaucoma screening using state-of-the-art diagnostic technology: intraocular pressure measurement (tonometry), optic-nerve and retinal nerve-fibre layer imaging (OCT), corneal thickness assessment (pachymetry), drainage-angle evaluation (gonioscopy) and visual-field mapping (perimetry) — enabling early detection of optic-nerve damage and personalised treatment planning.",
+      desc: "Comprehensive glaucoma screening using state-of-the-art diagnostic technology: intraocular pressure measurement (tonometry) and visual-field mapping (perimetry) — enabling early detection of optic-nerve damage and personalised treatment planning.",
       image: service8,
       freeService: true,
-      features: ["Intraocular Pressure (IOP) Measurement", "Optic-Nerve & RNFL Imaging (OCT)", "Corneal Thickness Test (Pachymetry)", "Drainage Angle Evaluation (Gonioscopy)", "Visual-Field Test (Perimetry)"]
+      features: ["Intraocular Pressure (IOP) Measurement", "Visual-Field Test (Perimetry)"]
   },
   {
     number: "05",

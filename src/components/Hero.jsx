@@ -4,8 +4,9 @@ import AppointmentForm from './AppointmentForm';
 import { useNavigate } from 'react-router-dom';
 
 import hero1 from '../assets/DSC_6525.JPG';
-import hero2 from '../assets/DSC_6066.JPG';
-import hero3 from '../assets/DSC_6198.jpg';
+import hero2 from '../assets/DSC_6198.jpg';
+import hero3 from '../assets/DSC_6066.JPG';
+
 
 const slides = [
   {
