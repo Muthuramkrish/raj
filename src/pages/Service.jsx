@@ -10,6 +10,10 @@ import service4 from "../assets/DSC_6183.JPG";
 import service8 from "../assets/elisar_optimizer.jpg";
 import service5 from "../assets/service-2.jpg";
 import service7 from "../assets/DSC_6056.jpg";
+import blueBlockTesterImage from "../assets/blue_block_tester.jpg";
+import sunglassesImage from "../assets/DSC_3901.JPG";
+import lensFittingBlockerImage from "../assets/lens_fitting_blocker.jpg";
+import lensometerImage from "../assets/lensometer.jpg";
 
 const Navlink = lazy(() => import("../components/Navlinks"));
 const Footer = lazy(() => import("../pages/Footer"));
@@ -75,6 +79,37 @@ const servicesSummary = [
     freeService: true,
     features: ["Deep Cleaning", "No Damage", "Hygienic", "Extends Frame & Lens Life", "Professional Equipment"]
   },
+  {
+    number: "08",
+    title: "Blue Block Lens Testing",
+    desc: "Protect your eyes from digital screen fatigue with our professional Blue Block Lens Testing service. Using our specialized Blue Block Tester, we provide a live visual demonstration to verify the efficiency of your lenses in filtering out harmful blue light and UV rays.",
+    image: blueBlockTesterImage,
+    freeService: true,
+    features: ["Live Visual Verification", "Blue Light Filtration Check", "UV Protection Check", "Digital Eye Strain Assessment", "Personalized Lens Recommendations"]
+  },
+  {
+    number: "09",
+    title: "Custom Sunwear & Polarized Solutions",
+    desc: "Protect your eyes in style with our specialized custom sunwear solutions. We offer high-performance prescription and non-prescription sunglasses equipped with advanced UV400 filters, polarized lenses, and custom tinting tailored for all light conditions and outdoor lifestyles.",
+    image: sunglassesImage,
+    features: ["Custom Prescription Sunglasses", "Advanced Polarized Lenses", "100% UV400 Block Verification", "Fashion & Sports Frame Styling", "Custom Tinting & Gradient Finishes"]
+  },
+  {
+    number: "10",
+    title: "Precision Lens Fitting & Axis Centration",
+    desc: "Achieve flawless visual clarity with our advanced layout blocking and centration system. Before lens edging, we use our specialized layout blocker to secure and verify the precise optical center and prescription cylinder axis, ensuring ultimate accuracy and viewing comfort.",
+    image: lensFittingBlockerImage,
+    freeService: true,
+    features: ["High-Precision Optical Centering", "Prescription Axis Verification", "Secure Layout Blocking", "Perfect Visual Alignment", "Accurate Lens-to-Frame Sync"]
+  },
+  {
+    number: "11",
+    title: "Automated Lensometry & Power Mapping",
+    desc: "Instantly verify and analyze the precise prescription of your existing eyeglasses or contact lenses. Our high-precision Auto Lensometer scans sphere, cylinder, axis, prism, and progressive addition (ADD) powers with micro-level accuracy.",
+    image: lensometerImage,
+    freeService: true,
+    features: ["Automatic Prescription Reading", "Progressive & Bifocal ADD Mapping", "Prism & Optical Center Detection", "Cylinder Axis Alignment Check", "UV Protection Verification"]
+  },
 ];
 
 const techFeatures = [
@@ -108,7 +143,10 @@ const freeServices = [
   "Professional Consultation",
   "Eye pressure Testing",
   "Advance glaucoma testing",
-  "Dry Eye Test"
+  "Dry Eye Test",
+  "Blue Block Lens Testing",
+  "Precision Lens Fitting & Centration Check",
+  "Automated Lensometer Prescription Check"
 ];
 
 function Service() {
