@@ -227,11 +227,11 @@ function Service() {
               No charges for tests and consultations. We believe in accessible eye care for everyone.
             </p>
           </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {freeServices.map((service, index) => (
-              <motion.div key={index} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center shadow-sm border border-green-200">
-                <FaCheckCircle className="text-green-500 mx-auto mb-2" />
-                <p className="text-sm font-medium text-gray-700 leading-tight">{service}</p>
+              <motion.div key={index} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center shadow-sm border border-green-200 w-[calc(50%-8px)] md:w-[calc(25%-12px)] flex flex-col items-center justify-center min-h-[110px]">
+                <FaCheckCircle className="text-green-500 mx-auto mb-2 flex-shrink-0" />
+                 <p className="text-sm font-medium text-gray-700 leading-tight">{service}</p>
               </motion.div>
             ))}
           </div>
