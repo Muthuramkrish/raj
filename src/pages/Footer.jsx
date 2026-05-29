@@ -1,9 +1,63 @@
+import { useState, useEffect } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaEnvelope, FaFacebook, FaInstagram, FaStar, FaEye, FaGlasses, FaUserMd, FaUsers } from "react-icons/fa";
 import logo from "../assets/Raj-opticals-logo.png";
 import { useNavigate, Link } from "react-router-dom";
+import { mapsOpenUrl, mapsReviewsUrl, STORE_ADDRESS } from "../constants/storeLocation";
 
 function Footer() {
   const navigate = useNavigate();
+  const [reviewsCount, setReviewsCount] = useState(461);
+
+  useEffect(() => {
+    // Live fetching from Google Maps via AllOrigins CORS proxy with cache-busting
+    const fetchLiveReviews = async () => {
+      try {
+        const targetUrl = `${mapsOpenUrl}&cb=${Date.now()}`;
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+        
+        const response = await fetch(proxyUrl);
+        if (!response.ok) throw new Error("Proxy response failed");
+        
+        const data = await response.json();
+        const html = data.contents;
+        let parsedCount = 0;
+
+        // Pattern 1: Schema.org microdata (meta tag)
+        const schemaMatch = html.match(/itemprop="reviewCount"\s+content="(\d+)"/i) || 
+                            html.match(/content="(\d+)"\s+itemprop="reviewCount"/i);
+        if (schemaMatch && schemaMatch[1]) {
+          parsedCount = parseInt(schemaMatch[1], 10);
+        }
+
+        // Pattern 2: JSON-LD metadata format
+        if (!parsedCount) {
+          const jsonLdMatch = html.match(/"reviewCount":\s*"?(\d+)"?/i);
+          if (jsonLdMatch && jsonLdMatch[1]) {
+            parsedCount = parseInt(jsonLdMatch[1], 10);
+          }
+        }
+
+        // Pattern 3: Google Maps window.APP_INITIALIZATION_STATE array
+        if (!parsedCount) {
+          const appStateMatch = html.match(/\[null,null,\d+\.\d+,\s*(\d+)\]/);
+          if (appStateMatch && appStateMatch[1]) {
+            parsedCount = parseInt(appStateMatch[1], 10);
+          }
+        }
+
+        console.log("Parsed dynamic Google Maps review count for Raj Eye Care:", parsedCount);
+
+        // Guard: Only update if we successfully found a realistic number of reviews
+        if (parsedCount >= 461) {
+          setReviewsCount(parsedCount);
+        }
+      } catch (error) {
+        console.warn("Could not fetch live Google reviews count, using baseline 461 reviews:", error);
+      }
+    };
+
+    fetchLiveReviews();
+  }, []);
 
   return (
     <footer className="bg-gray-900 text-gray-100">
@@ -16,12 +70,12 @@ function Footer() {
             <div className="flex items-start gap-2 hover:text-blue-300 transition-colors">
               <FaMapMarkerAlt className="text-blue-400 text-base md:text-lg flex-shrink-0 mt-0.5" />
               <a
-                href="https://maps.app.goo.gl/ne9oHzdVbBknRQ93A"
+                href={mapsOpenUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs md:text-sm break-words"
               >
-                138, Paruthi Mall Complex, Sattur
+                {STORE_ADDRESS}
               </a>
             </div>
             <div className="flex items-center gap-2">
@@ -39,14 +93,17 @@ function Footer() {
               <FaEnvelope className="text-red-400 text-base md:text-lg flex-shrink-0 mt-0.5" />
               <a href="mailto:rajopticalssattur@gmail.com" className="text-xs md:text-sm break-words">rajopticalssattur@gmail.com</a>
             </div>
-          </div>
-
-          <div className="mt-4 p-3 bg-gray-800 rounded-lg">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-lg md:text-xl font-bold">4.9</span>
-              <div className="flex text-yellow-400 space-x-0.5">
-                {[...Array(5)].map((_, i) => <FaStar key={i} className="text-xs md:text-sm" />)}
-              </div>
+            <div className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+              <FaStar className="text-yellow-400 text-base md:text-lg flex-shrink-0" />
+              <a
+                href={mapsReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs md:text-sm font-semibold flex items-center gap-1"
+              >
+                <span>4.9 ({reviewsCount} Google Reviews)</span>
+                <span className="text-[10px] opacity-75">↗</span>
+              </a>
             </div>
           </div>
         </div>
