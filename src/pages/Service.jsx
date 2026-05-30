@@ -1,5 +1,6 @@
 // src/pages/Service.jsx
 import { Suspense, lazy, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaCheckCircle, FaStar, FaBolt, FaStethoscope, FaRibbon, FaRegSmile, FaChevronDown, FaChevronUp, } from "react-icons/fa";
 import backgroundImage from "../assets/bg7.jpg";
@@ -11,9 +12,12 @@ import service8 from "../assets/elisar_optimizer.jpg";
 import service5 from "../assets/service-2.jpg";
 import service7 from "../assets/DSC_6056.jpg";
 import blueBlockTesterImage from "../assets/blue_block_tester.jpg";
-import sunglassesImage from "../assets/DSC_3901.JPG";
-import lensFittingBlockerImage from "../assets/lens_fitting_blocker.jpg";
+import sunglassesImage from "../assets/showcase_sunglasses.png";
+import lensFittingBlockerImage from "../assets/lens_fitting_blocker.jpeg";
 import lensometerImage from "../assets/lensometer.jpg";
+import photoGreyDiffuserImage from "../assets/DSC_3907.jpg";
+import contactLensImage from "../assets/PolyliteyearlycontactlensesSoftTouchLenses-1.jpg";
+import photSlitLampImage from "../assets/Phot-Slit_Lamp.jpg";
 
 const Navlink = lazy(() => import("../components/Navlinks"));
 const Footer = lazy(() => import("../pages/Footer"));
@@ -110,6 +114,30 @@ const servicesSummary = [
     freeService: true,
     features: ["Automatic Prescription Reading", "Progressive & Bifocal ADD Mapping", "Prism & Optical Center Detection", "Cylinder Axis Alignment Check", "UV Protection Verification"]
   },
+  {
+    number: "12",
+    title: "Photo Grey Diffuser",
+    desc: "Experience the modern photochromic transition with our professional Photo Grey Diffuser. This specialized UV activation device lets you see in real-time how photogray (transition) lenses adapt and darken from perfectly clear indoors to deep, sun-protecting shades outdoors, ensuring you choose the perfect reactive tint.",
+    image: photoGreyDiffuserImage,
+    freeService: true,
+    features: ["Instant UV Light Activation Demo", "Controlled Photochromic Showcase", "Side-by-Side Tint Shade Comparison", "Clear-to-Dark Transition Speed Test", "UV400 Level Protection Demonstration", "Adaptive Lens Comfort Check"]
+  },
+  {
+    number: "13",
+    title: "Contact Lens & Color Contact Lens",
+    desc: "Enhance your vision and style with our wide range of contact lenses. We offer daily wear, monthly, and yearly contact lenses from top brands like Polylite, Bausch & Lomb, and Johnson & Johnson. For fashion lovers, our Color Contact Lenses come in a stunning variety of shades — perfect for a natural look or bold transformation with full UV protection and comfort.",
+    image: contactLensImage,
+    features: ["Daily, Monthly & Yearly Contact Lenses", "Color Contact Lenses (Natural & Bold Shades)", "All Top Brands Available", "Professional Contact Lens Fitting"],
+    link: { text: "Premium Lens Collection", href: "/products" }
+  },
+  {
+    number: "14",
+    title: "Remidio Photo Slit Lamp",
+    desc: "Experience high-definition diagnostic eye imaging with the advanced Remidio Photo Slit Lamp. This state-of-the-art imaging system captures detailed digital photos of the anterior segment of your eyes, including the cornea, iris, and crystalline lens. This enables accurate monitoring of eye health and early detection of external eye conditions.",
+    image: photSlitLampImage,
+    freeService: true,
+    features: ["Digital Anterior Segment Photography", "High-Resolution Cornea & Iris Imaging", "Cornea and Crystalline Lens Assessment", "Precise Clinical Record Keeping", "Visual Patient Consultation", "Early Eye Condition Detection Check"]
+  },
 ];
 
 const techFeatures = [
@@ -146,7 +174,9 @@ const freeServices = [
   "Dry Eye Test",
   "Blue Block Lens Testing",
   "Precision Lens Fitting & Centration Check",
-  "Automated Lensometer Prescription Check"
+  "Automated Lensometer Prescription Check",
+  "Photo Grey Diffuser Demonstration",
+  "Remidio Photo Slit Lamp Examination"
 ];
 
 function Service() {
@@ -276,6 +306,14 @@ function Service() {
                                 <span>{f}</span>
                               </div>
                             ))}
+                            {service.link && (
+                              <div className="flex items-center gap-2 text-sm mt-1">
+                                <FaCheckCircle className="text-blue-500 text-xs flex-shrink-0" />
+                                <Link to={service.link.href} className="text-blue-600 font-semibold hover:text-blue-800 hover:underline transition-colors">
+                                  {service.link.text} →
+                                </Link>
+                              </div>
+                            )}
                           </div>
                         </div>
 
@@ -309,6 +347,14 @@ function Service() {
                                       <span>{f}</span>
                                     </div>
                                   ))}
+                                  {service.link && (
+                                    <div className="flex items-center gap-2 text-sm mt-1">
+                                      <FaCheckCircle className="text-blue-500 text-xs flex-shrink-0" />
+                                      <Link to={service.link.href} className="text-blue-600 font-semibold hover:text-blue-800 hover:underline transition-colors">
+                                        {service.link.text} →
+                                      </Link>
+                                    </div>
+                                  )}
                                 </motion.div>
                               )}
                             </div>
