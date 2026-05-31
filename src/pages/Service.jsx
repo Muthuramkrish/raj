@@ -185,6 +185,7 @@ function Service() {
   
   const [isMobile, setIsMobile] = useState(false);
   const [expandedServices, setExpandedServices] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
   // Check if mobile on mount and resize
   useEffect(() => {
@@ -196,6 +197,23 @@ function Service() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Handle escape key and body overflow when lightbox is open
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setSelectedImage(null);
+      }
+    };
+    if (selectedImage) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedImage]);
 
   const toggleServiceFeatures = (serviceId) => {
     setExpandedServices(prev => ({
@@ -367,10 +385,22 @@ function Service() {
 
                 {/* Image */}
                 <div className="flex-shrink-0">
-                  <motion.div whileHover={{ scale:1.03 }} className="relative group">
+                  <motion.div 
+                    whileHover={{ scale:1.03 }} 
+                    className="relative group cursor-pointer"
+                    onClick={() => setSelectedImage(service)}
+                  >
                     <div className="relative w-64 sm:w-64 md:w-72 h-64 sm:h-64 md:h-72 rounded-xl overflow-hidden shadow-lg">
                       <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy"/>
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10"></div>
+                      
+                      {/* Premium Hover Zoom Overlay */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                        <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold border border-white/25 shadow-lg">
+                          Click to View
+                        </span>
+                      </div>
+
                       {service.freeService && <div className="absolute top-3 right-3 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">FREE</div>}
                     </div>
                   </motion.div>
@@ -406,6 +436,35 @@ function Service() {
       <Suspense fallback={<div>Loading Footer...</div>}>
         <Footer />
       </Suspense>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 cursor-zoom-out animate-fade-in"
+          onClick={() => setSelectedImage(null)}
+        >
+          {/* Close Button */}
+          <button 
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-6 right-6 text-white/80 hover:text-white text-3xl focus:outline-none transition-colors cursor-pointer bg-white/10 hover:bg-white/20 p-2 rounded-full leading-none z-50"
+            aria-label="Close image viewer"
+          >
+            &times;
+          </button>
+
+          {/* Large Image Container */}
+          <div 
+            className="relative max-w-5xl max-h-[90vh] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+          >
+            <img 
+              src={selectedImage.image} 
+              alt={selectedImage.title} 
+              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10 animate-scale-up"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

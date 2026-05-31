@@ -9,6 +9,7 @@ import lens2 from "../assets/Essilor.jpg";
 import lens3 from "../assets/zeissgold.jpg";
 import lens4 from "../assets/Bausch + Lomb.jpg";
 import lens5 from "../assets/Vision_RX_Lab.jpg";
+import lens6 from "../assets/Blue-Block-Lens.jpg";
 
 function Products() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -18,7 +19,7 @@ function Products() {
 
   useEffect(() => {
     const preloadImages = async () => {
-      const images = [lens1, lens2, lens3, lens4, lens5];
+      const images = [lens1, lens2, lens3, lens4, lens5, lens6];
       const promises = images.map(src => {
         return new Promise((resolve) => {
           const img = new Image();
@@ -36,22 +37,23 @@ function Products() {
   }, []);
 
   const brands = [
-    { id: "all", name: "All Brands", count: 5 },
-    { id: "softtouch", name: "Soft Touch", count: 1 },
+    { id: "all", name: "All Brands", count: 6 },
+    { id: "softtouch", name: "Contact Lens", count: 1 },
     { id: "essilor", name: "Essilor", count: 1 },
     { id: "zeiss", name: "Zeiss", count: 1 },
     { id: "bausch", name: "Bausch & Lomb", count: 1 },
     { id: "Vison Rx Lab", name: "Vison Rx Lab", count: 1 },
+    { id: "blueblock", name: "Blue Block", count: 1 },
   ];
 
   const lensProducts = [
     { 
       img: lens1, 
-      name: "Soft Touch Yearly Contact Lenses", 
+      name: "All Branded Contact Lenses", 
       brand: "softtouch",
-      description: "Polylite Soft Touch yearly lenses are designed for long-term comfort and clear vision. They provide high oxygen permeability, ensuring your eyes stay healthy. Ideal for sensitive eyes, they combine durability with natural feel for daily wear.",
-      benefits: ["Reduces dry eye", "Ideal for sensitive eyes", "Cost-effective"],
-      technology: "Hydrogel with SmartSilk",
+      description: "All branded contact lenses, including all types of daily, monthly, yearly, and color contact lenses, are available. Experience supreme comfort and perfect visual clarity with premium options tailored to your lifestyle.",
+      benefits: ["Daily, Monthly & Yearly Lenses Available", "Wide Range of Color Lenses", "All Branded Lenses with Maximum Comfort"],
+      technology: "Multi-Brand Premium Selection",
       usage: "Refer Product Catalogue",
     },
     { 
@@ -89,6 +91,15 @@ function Products() {
       description: "Vision Rx Lab Blue Cut lenses provide comprehensive protection against harmful blue light emitted from digital screens. These premium lenses reduce digital eye strain, prevent headaches, and improve sleep quality by filtering high-energy blue light while maintaining true color perception.",
       benefits: ["Reduces digital eye strain", "Improves sleep quality", "Prevents headaches & migraines", "UV protection"],
       technology: "Advanced Blue Cut Technology with AR Coating",
+      usage: "Refer Product Catalogue",
+    },
+    { 
+      img: lens6, 
+      name: "Indian & Imported Blue Block Lenses (Mobile Lenses)", 
+      brand: "blueblock",
+      description: "All branded Indian and imported Blue Block lenses are available, designed to filter out harmful high-energy blue light emitted by digital screens and mobile phones. Highly recommended as daily mobile lenses to prevent digital eye strain.",
+      benefits: ["Reduces digital eye strain & fatigue", "Protects against mobile & computer glare", "Premium Indian & Imported brands"],
+      technology: "Advanced Blue-Cut & UV Block Technology",
       usage: "Refer Product Catalogue",
     },
   ];
