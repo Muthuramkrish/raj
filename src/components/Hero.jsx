@@ -29,7 +29,7 @@ const slides = [
     description: "Comprehensive eye care solutions from routine exams to complex surgical procedures.",
     buttonText: "Our Services",
     buttonAction: (setIsFormOpen, navigate) => navigate('/Service'),
-    features: ["Computerized Vision Testing", "Retina & Diabetic Screening", "Glaucoma & IOP Screening", "Remidio Photo Slit Lamp Examination"]
+    features: ["Computerized Vision Testing", "Retina & Diabetic Screening", "Remidio Photo Slit Lamp Examination"]
   },
   {
     id: 3,
