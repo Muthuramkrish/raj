@@ -25,11 +25,11 @@ const slides = [
   {
     id: 2,
     backgroundImage: hero2,
-    title: "Advanced Eye Treatments",
+    title: "Advanced Eye Diagnosis",
     description: "Comprehensive eye care solutions from routine exams to complex surgical procedures.",
     buttonText: "Our Services",
     buttonAction: (setIsFormOpen, navigate) => navigate('/Service'),
-    features: ["Ultrasonic lens & frame cleaning", "Photo lens Tester", "Retina Care", "Blue light filter Tester"]
+    features: ["Computerized Vision Testing", "Retina & Diabetic Screening", "Glaucoma & IOP Screening", "Remidio Photo Slit Lamp Examination"]
   },
   {
     id: 3,
