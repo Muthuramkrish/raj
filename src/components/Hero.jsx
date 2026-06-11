@@ -151,7 +151,7 @@ const Hero = memo(() => {
     
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % slides.length);
-    }, 6000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [isLoading]);

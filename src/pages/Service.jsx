@@ -2,7 +2,7 @@
 import { Suspense, lazy, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaCheckCircle, FaStar, FaBolt, FaStethoscope, FaRibbon, FaRegSmile, FaChevronDown, FaChevronUp, } from "react-icons/fa";
+import { FaCheckCircle, FaStar, FaBolt, FaStethoscope, FaRibbon, FaRegSmile, FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import backgroundImage from "../assets/bg7.jpg";
 import service1 from "../assets/DSC_6198.jpg";
 import service2 from "../assets/DSC_6224.jpg";
@@ -198,11 +198,20 @@ function Service() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Handle escape key and body overflow when lightbox is open
+  // Handle escape key, arrow keys and body overflow when lightbox is open
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (!selectedImage) return;
       if (e.key === "Escape") {
         setSelectedImage(null);
+      } else if (e.key === "ArrowLeft") {
+        const currentIndex = servicesSummary.findIndex(s => s.number === selectedImage.number);
+        const prevIndex = (currentIndex - 1 + servicesSummary.length) % servicesSummary.length;
+        setSelectedImage(servicesSummary[prevIndex]);
+      } else if (e.key === "ArrowRight") {
+        const currentIndex = servicesSummary.findIndex(s => s.number === selectedImage.number);
+        const nextIndex = (currentIndex + 1) % servicesSummary.length;
+        setSelectedImage(servicesSummary[nextIndex]);
       }
     };
     if (selectedImage) {
@@ -214,6 +223,22 @@ function Service() {
       document.body.style.overflow = "unset";
     };
   }, [selectedImage]);
+
+  const handlePrevImage = (e) => {
+    e.stopPropagation();
+    if (!selectedImage) return;
+    const currentIndex = servicesSummary.findIndex(s => s.number === selectedImage.number);
+    const prevIndex = (currentIndex - 1 + servicesSummary.length) % servicesSummary.length;
+    setSelectedImage(servicesSummary[prevIndex]);
+  };
+
+  const handleNextImage = (e) => {
+    e.stopPropagation();
+    if (!selectedImage) return;
+    const currentIndex = servicesSummary.findIndex(s => s.number === selectedImage.number);
+    const nextIndex = (currentIndex + 1) % servicesSummary.length;
+    setSelectedImage(servicesSummary[nextIndex]);
+  };
 
   const toggleServiceFeatures = (serviceId) => {
     setExpandedServices(prev => ({
@@ -454,14 +479,32 @@ function Service() {
 
           {/* Large Image Container */}
           <div 
-            className="relative max-w-5xl max-h-[90vh] flex flex-col items-center"
+            className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center px-12"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
           >
+            {/* Left Navigation Button */}
+            <button
+              onClick={handlePrevImage}
+              className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 text-white/80 hover:text-white bg-black/40 hover:bg-black/60 p-3 md:p-4 rounded-full transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-white/50 group"
+              aria-label="Previous image"
+            >
+              <FaChevronLeft className="text-xl md:text-2xl group-hover:-translate-x-1 transition-transform" />
+            </button>
+
             <img 
               src={selectedImage.image} 
               alt={selectedImage.title} 
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10 animate-scale-up"
             />
+
+            {/* Right Navigation Button */}
+            <button
+              onClick={handleNextImage}
+              className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 text-white/80 hover:text-white bg-black/40 hover:bg-black/60 p-3 md:p-4 rounded-full transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-white/50 group"
+              aria-label="Next image"
+            >
+              <FaChevronRight className="text-xl md:text-2xl group-hover:translate-x-1 transition-transform" />
+            </button>
           </div>
         </div>
       )}
