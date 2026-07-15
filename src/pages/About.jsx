@@ -82,6 +82,8 @@ function Aboutus() {
     { name: "Topcon Lensometer & Auto Lens Edger", Icon: FaTools, color: "bg-green-500" },
     { name: "Topcon Non-Contact Tonometer", Icon: FaMicroscope, color: "bg-purple-500" },
     { name: "Topcon Slit Lamp", Icon: TbLamp2, color: "bg-amber-500" },
+    { name: "Remideo Fundus camera", Icon: FaCamera, color: "bg-teal-500" },
+    { name: "Remideo Photo Slitlamp", Icon: TbLamp2, color: "bg-orange-500" },
     { name: "Essilar PD Meter", Icon: FaMicroscope, color: "bg-purple-500" },
     { name: "Digital Eye Chart", Icon: FaMicroscope, color: "bg-red-500" }
   ];

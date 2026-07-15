@@ -53,6 +53,8 @@ function Aboutus() {
         "Topcon Lensometer & Auto Lens Edger",
         "Topcon Non-Contact Tonometer",
         "Topcon Slit Lamp",
+        "Remideo Fundus camera",
+        "Remideo Photo Slitlamp",
         "Essilar PD Meter",
         "Digital Eye Chart",
       ],
