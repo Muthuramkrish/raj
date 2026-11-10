@@ -211,7 +211,7 @@ function PrivacyPolicy() {
               <p><strong>📍 Store Address:</strong> 138, Paruthi Mall Complex, Sattur, Tamil Nadu 626203</p>
               <p><strong>📞 Vision Hotline:</strong> +91 75988 95773</p>
               <p><strong>📧 Eye Care Email:</strong> rajopticalssattur@gmail.com</p>
-              <p><strong>🕒 Optical Hours:</strong> 9:00 AM - 8:00 PM (Daily)</p>
+              <p><strong>🕒 Optical Hours:</strong> Mon - Sat: 9:00 AM - 9:00 PM, Sunday: 9:00 AM - 8:00 PM</p>
             </div>
           </section>
 
